@@ -22,38 +22,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:elevation="0dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/activity_main_toolbar"
+                android:id="@+id/mainToolbarAct"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                android:backgroundTint="@color/colorPrimary"
                 app:elevation="0dp"
-                android:textAlignment="center"
+                app:layout_collapseMode="pin"
+                android:textAlignment="textStart"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextColor="@color/colorAccentSecundary"
                 tools:targetApi="lollipop" >
 
                 <TextView
                     android:id="@+id/activity_main_toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_100sdp"
-                    android:ellipsize="marquee"
-                    android:fadingEdge="horizontal"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:textColor="#ff4500"
                     android:textSize="30sp" />
 
             </androidx.appcompat.widget.Toolbar>

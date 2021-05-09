@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -28,11 +29,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar: Toolbar = findViewById(R.id.mainToolbarAct)
 
+        toolbar.title = "Android Sivar"
+        setSupportActionBar(toolbar)
         drawerLayout = findViewById(R.id.drawer_layout)
 
-        // Set the toolbar
-        setSupportActionBar(activity_main_toolbar)
+
 
         // Setup Recyclerview's Layout
         navigation_rv.layoutManager = LinearLayoutManager(this)

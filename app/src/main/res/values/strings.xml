@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">androidSivarKorinver</string>
+    <string name="prueba">Texto Prueba</string>
+    <string name="dateTitle">Fecha de publicación:</string>
+    <string name="image_of_data">Image of data</string>
+    <string name="author_title">Autor:</string>
+    <string name="descriptionTitle">Descripción:</string>
+    <string name="contTitle">Contenido:</string>
+    <string name="buttonInfo">Ir al sitio web</string>
+    <string name="add">Agregar</string>
+    <string name="title">Titulo:</string>
+    <string name="delete">Borrar</string>
+    <string name="update">Actualizar</string>
+    <string name="save">Guardar</string>
 </resources>

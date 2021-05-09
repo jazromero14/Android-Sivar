@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="96dp"
+    android:layout_height="200dp"
     android:layout_marginTop="12dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -12,54 +12,78 @@
     card_view:cardCornerRadius="8dp"
     card_view:contentPadding="10dp"
     android:foreground="?selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/kodePertanyaan"
-                android:layout_width="181dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="68dp"
-                android:fontFamily="sans-serif"
-                android:text="Titulo" />
+                <ImageView
+                    android:id="@+id/imgData"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/aurora"
+                    android:scaleType="centerCrop"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    android:contentDescription="@string/image_of_data" />
 
-            <TextView
-                android:id="@+id/kategori"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif-light"
-                android:text="id"
-                android:gravity="end|center_vertical"/>
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/_20sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@string/prueba"
+                    android:layout_gravity="bottom"
+                    android:background="#8c000000"
+                    android:textColor="#ffe3e3e3"
+                    android:fontFamily="sans-serif"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintBottom_toBottomOf="parent"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/dateTitle"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="@string/dateTitle"
+                    android:layout_gravity="bottom"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintEnd_toStartOf="@id/date"
+                    card_view:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/isiPertanyaan"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="44dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="top"
-                android:text="autor" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="@string/prueba"
+                    android:layout_gravity="bottom"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    card_view:layout_constraintStart_toEndOf="@id/dateTitle"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
+

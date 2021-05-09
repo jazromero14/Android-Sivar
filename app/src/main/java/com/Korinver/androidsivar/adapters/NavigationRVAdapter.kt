@@ -38,10 +38,6 @@ class NavigationRVAdapter (private var items: ArrayList<NavigationItemModel>, pr
         }
         holder.itemView.navigation_icon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         holder.itemView.navigation_title.setTextColor(Color.WHITE)
-        //val font = ResourcesCompat.getFont(context, R.font.mycustomfont)
-        //holder.itemView.navigation_text.typeface = font
-        //holder.itemView.navigation_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20.toFloat())
-
         holder.itemView.navigation_title.text = items[position].title
 
         holder.itemView.navigation_icon.setImageResource(items[position].icon)
