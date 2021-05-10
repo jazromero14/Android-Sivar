@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET("everything")
-    fun getResults(@Query("q") q:String, @Query("apiKey") apiKey:String) : Call<Results>
+    fun getResults(@Query("q") q:String, @Query("sortBy") sortBy:String, @Query("language") language:String, @Query("apiKey") apiKey:String) : Call<Results>
 
     companion object {
 

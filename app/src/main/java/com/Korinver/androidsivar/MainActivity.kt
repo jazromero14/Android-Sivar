@@ -29,13 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.mainToolbarAct)
-
-        toolbar.title = "Android Sivar"
-        setSupportActionBar(toolbar)
         drawerLayout = findViewById(R.id.drawer_layout)
-
-
 
         // Setup Recyclerview's Layout
         navigation_rv.layoutManager = LinearLayoutManager(this)

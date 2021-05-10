@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,6 +28,12 @@ class DetailActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.mainToolbar)
         setSupportActionBar(toolbar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(View.OnClickListener {
+            //What to do on back clicked
+            onBackPressed()
+        })
 
         val author: String = intent.getStringExtra("autor")!!
         val date: String = intent.getStringExtra("fecha")!!

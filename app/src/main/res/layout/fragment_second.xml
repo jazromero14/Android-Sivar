@@ -1,33 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorSecundary">
+    android:layout_width="match_parent"
+    android:background="@color/colorSecundary"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!--recycler view to display our data-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/datarecord_list"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:elevation="0dp"
+        android:background="#8c000000"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <!--fab to add new courses-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/secondToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:textAlignment="textStart"
+            app:elevation="0dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorSecundary">
+
+            <!--recycler view to display our data-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/datarecord_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!--fab to add new articles-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fltArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="18dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954"
-        app:tint="@color/colorPrimaryDark" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:tint="@color/colorPrimaryDark"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

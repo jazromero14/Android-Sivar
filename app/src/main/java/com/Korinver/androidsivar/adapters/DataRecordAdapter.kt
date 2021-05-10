@@ -49,8 +49,9 @@ class DataRecordAdapter internal constructor(context: Context) :
        layout with variables that will be used inside OnBindViewHolder.
     */
     inner class DataRecordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val itemId: TextView = itemView.findViewById(R.id.datarecord_viewholder_id)
-        val itemRecord: TextView = itemView.findViewById(R.id.datarecord_viewholder_record)
+
+        val itemTitle: TextView = itemView.findViewById(R.id.datarecord_viewholder_title)
+        val itemAuthor: TextView = itemView.findViewById(R.id.datarecord_viewholder_author)
     }
 
     /* Basically, inflates the ViewHolder layout and returns a ViewHolder object
@@ -71,8 +72,8 @@ class DataRecordAdapter internal constructor(context: Context) :
 
         with(holder) {
             // Set UI values
-            itemId.text = current.id.toString()
-            itemRecord.text = current.record
+            itemTitle.text = current.title
+            itemAuthor.text = current.author
 
             // Set handlers
             itemView.setOnClickListener(onClickListener)

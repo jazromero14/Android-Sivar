@@ -8,7 +8,9 @@ import androidx.room.PrimaryKey
 data class DataRecord(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val record: String
-
+    val author : String,
+    val title: String,
+    val description : String,
+    val content : String
 
 )

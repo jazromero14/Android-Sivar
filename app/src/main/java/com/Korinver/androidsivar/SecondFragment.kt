@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Korinver.androidsivar.adapters.DataRecordAdapter
 import com.Korinver.androidsivar.viewmodels.DataRecordViewModel
+import kotlinx.android.synthetic.main.fragment_demo.*
 import kotlinx.android.synthetic.main.fragment_second.*
 
 class SecondFragment : Fragment() {
@@ -29,6 +32,10 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated( itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.secondToolbar)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+        toolbar.title = "Android Sivar"
+       // titleSecond.text = "Android Sivar"
 
         val fab: View = view!!.rootView.findViewById(R.id.fltArticle)
         fab.setOnClickListener { view ->

@@ -12,4 +12,9 @@
     <string name="delete">Borrar</string>
     <string name="update">Actualizar</string>
     <string name="save">Guardar</string>
+    <string name="new_article">Nuevo Articulo</string>
+    <string name="es">ES</string>
+    <string name="en">EN</string>
+    <string name="idioma">Idioma:</string>
+    <string name="developed_by_jazm_n_romero">Developed by Jazmín Romero</string>
 </resources>

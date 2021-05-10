@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,7 @@ import com.Korinver.androidsivar.adapters.RecyclerAdapter
 import com.Korinver.androidsivar.models.Articles
 import com.Korinver.androidsivar.models.Results
 import com.Korinver.androidsivar.retrofit.ApiInterface
+import kotlinx.android.synthetic.main.fragment_demo.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +25,7 @@ class DemoFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
    private  var mArticles : MutableList<Articles> = ArrayList()
+    private lateinit var apiInterface: Call<Results>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +34,7 @@ class DemoFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_demo, container, false)
         layoutManager = LinearLayoutManager(activity)
+
         // set the custom adapter to the RecyclerView
         adapter = RecyclerAdapter(requireContext() , mArticles, R.layout.cardview)
         return rootView
@@ -37,18 +42,38 @@ class DemoFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        val API_KEY = "03715fe40d8a47cdb59a8860330e57e5"
-        val apiInterface = ApiInterface.create().getResults("android", API_KEY)
+        val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.mainToolbarAct)
 
+        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+        titlemain.text = "Android Sivar"
         //recycler
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
 
+
         // define an adapter
         adapter = RecyclerAdapter(requireContext(), mArticles, R.layout.cardview)
         recyclerView.adapter = adapter
+        getData("es")
+        
+        languageSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
 
+            if (isChecked){
+                mArticles.clear()
+                getData("es")
+            }else{
+                mArticles.clear()
+                getData("en")
+            }
+        }
+
+    }
+
+    private fun getData(language: String) {
+
+        val API_KEY = "03715fe40d8a47cdb59a8860330e57e5"
+        apiInterface = ApiInterface.create().getResults("android","popularity", language,API_KEY)
         apiInterface.enqueue(object : Callback<Results> {
             override fun onFailure(call: Call<Results>, t: Throwable) {
                 Log.e("results", t.toString())
