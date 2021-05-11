@@ -2,7 +2,7 @@ package com.Korinver.androidsivar.room
 
 import androidx.lifecycle.LiveData
 
-
+//Repositorio que  ocupara la base de datos
 class DataRecordRepository(private val datarecordDao: DataRecordDao) {
 
     val allItems: LiveData<List<DataRecord>> = datarecordDao.getall()

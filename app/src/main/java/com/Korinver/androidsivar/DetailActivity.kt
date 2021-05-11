@@ -14,6 +14,7 @@ import org.w3c.dom.Text
 
 class DetailActivity : AppCompatActivity() {
 
+    //Declaracion de variables goblales
     private lateinit var authorData: TextView
     private lateinit var dateData: TextView
     private lateinit var descriptionData : TextView
@@ -25,16 +26,18 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        //se declara la toolbar personalizada
         val toolbar: Toolbar = findViewById(R.id.mainToolbar)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(View.OnClickListener {
-            //What to do on back clicked
+            //se establece la accion
             onBackPressed()
         })
 
+        //Se recuperan los datos enviados desde DemoFragment.kt
         val author: String = intent.getStringExtra("autor")!!
         val date: String = intent.getStringExtra("fecha")!!
         val description : String = intent.getStringExtra("descripcion")!!
@@ -43,6 +46,7 @@ class DetailActivity : AppCompatActivity() {
         val urlImage = intent.getStringExtra("urlImage")
         val url = intent.getStringExtra("url")
 
+        //se inicializan las variables con los elementos de la vista
         authorData= findViewById(R.id.authorData)
         dateData = findViewById(R.id.dateData)
         descriptionData = findViewById(R.id.descriptioData)
@@ -51,12 +55,14 @@ class DetailActivity : AppCompatActivity() {
         imageData = findViewById(R.id.imgDataDetail)
         botonUrl = findViewById(R.id.btnUrl)
 
+        //se establecen los datos obtenidos desde DemoFragment hacia las variables con los elementos de la vista
         authorData.text = author
         dateData.text = date
         descriptionData.text = description
         contentdata.text = content
         titleData.text = title
 
+        //Con la herramienta de GLIDE se carga la URL de la imagen para poder mostarla en un formato drawable para un ImageView
         Glide.with(this)
             .load(urlImage)
             .placeholder(R.drawable.carga)
@@ -68,6 +74,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    //Función que abre la URL del link de la información
     private fun openURL(url: String?) {
 
         botonUrl.setOnClickListener {

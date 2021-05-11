@@ -10,6 +10,7 @@ import retrofit2.http.Query
 
 interface ApiInterface {
 
+    //Metodo get para hacer llamadas a la API
     @GET("everything")
     fun getResults(@Query("q") q:String, @Query("sortBy") sortBy:String, @Query("language") language:String, @Query("page") page:Int, @Query("apiKey") apiKey:String) : Call<Results>
 

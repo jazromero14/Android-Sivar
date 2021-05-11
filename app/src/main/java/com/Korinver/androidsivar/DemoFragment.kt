@@ -46,13 +46,14 @@ class DemoFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_demo, container, false)
         layoutManager = LinearLayoutManager(activity)
 
-        // set the custom adapter to the RecyclerView
+        // establezco el adaptador personalizado a RecyclerView
         adapter = RecyclerAdapter(requireContext() , mArticles, R.layout.cardview)
         return rootView
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        //establezco la toolbar personalizada a la vista
         val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.mainToolbarAct)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
         titlemain.text = "Android Sivar"
@@ -63,26 +64,31 @@ class DemoFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
 
+        //llamo a la funcion para actualizar los botones de paginación
         upButtom(1)
-        // define an adapter
+        // Se define el adapter
         adapter = RecyclerAdapter(requireContext(), mArticles, R.layout.cardview)
         recyclerView.adapter = adapter
         getData("es", 1)
 
-
+        //Se detecta si el toggle button se le da click y si cambia su estado de ON/OFF
         languageSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
 
+            //Si esta en modo ON se traeran datos en Español
             if (isChecked){
                 mArticles.clear()
                 getData("es", page)
                 upButtom(page)
             }else{
+
+                //y si esta en modo OFF se traeran datos en ingles
                 mArticles.clear()
                 getData("en",page)
                 upButtom(page)
             }
         }
 
+        //boton para poder cambiar de pagina al momento de traer los datos
         btnSiguiente.setOnClickListener {
             if (languageSwitch.isChecked){
                 page += 1
@@ -96,6 +102,8 @@ class DemoFragment : Fragment() {
                 upButtom(page)
             }
         }
+
+        //boton para retroceder de pagina al momento de traer los datos
         btnAnterior.setOnClickListener {
             if (languageSwitch.isChecked){
                 page -= 1
@@ -111,6 +119,8 @@ class DemoFragment : Fragment() {
         }
 
     }
+
+    //funcion que habilita o deshabilita los botones de SIguiente y Anterior para la paginación
     private fun upButtom(page: Int){
         if( page<=1 ){
             btnAnterior.isFocusable = false
@@ -134,18 +144,29 @@ class DemoFragment : Fragment() {
 
         }
     }
+
+    /* función que hace la llamada a la api
+    **/
     private fun getData(language: String, page : Int) {
 
+        //Llave para poder acceder a la API
         val API_KEY = "4f6ad0c7ee86446f8857e1edc6c479fc"
+
+        //Se mandan los parametros de la connsulta
         apiInterface = ApiInterface.create().getResults("android","popularity", language, page,API_KEY)
+        //metodo de  la llamda
         apiInterface.enqueue(object : Callback<Results> {
+
+            //Metodo sobre que hacer si la llamada falla
             override fun onFailure(call: Call<Results>, t: Throwable) {
                 Log.e("results", t.toString())
                 Snackbar.make(view!!, "ha ocurrido un error, intentalo de nuevo", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             }
 
+            //Metodo sobre que hacer si la llamada es exitosa
             override fun onResponse(call: Call<Results>, response: Response<Results>) {
+                //verificamos que la respuesta no sea nula
                 if (response.body() != null){
                     if(response.body()!!.status == "error"){
 

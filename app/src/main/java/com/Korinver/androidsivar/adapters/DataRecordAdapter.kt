@@ -22,20 +22,18 @@ class DataRecordAdapter internal constructor(context: Context) :
     private val onClickListener: View.OnClickListener
 
     init {
-        /* Remember that his receives a single item of type DataRecord during iteration
-           from:
+        /* Se recibe un solo elemento de tipo DataRecord durannte el proceso
                 datarecordViewModel.allItems.observe(this, Observer { items ->
                     items?.let { adapter.setItems(it) }
                 })
-           in the `DataRecordListActivity`
+           en `DataRecordListActivity`
         * */
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as DataRecord
 
             Log.d("TAG","Setting onClickListener for item ${item.id}")
 
-            /* We also want to start a new Intent with Extra Data customized
-               to the `id` of the associated item.
+            /* iniciamos un nuevo Intent con datos adicionales personalizados.
              */
 
             val intent = Intent(v.context, DataRecordDetail::class.java).apply {
@@ -45,8 +43,8 @@ class DataRecordAdapter internal constructor(context: Context) :
         }
     }
 
-    /* This is an `inner class` that associates associates the items in the ViewHolder
-       layout with variables that will be used inside OnBindViewHolder.
+    /* Esta es una clase interna que asocia los elementos en ViewHolder
+        diseño con variables que se utilizarán dentro de OnBindViewHolder.
     */
     inner class DataRecordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -54,28 +52,26 @@ class DataRecordAdapter internal constructor(context: Context) :
         val itemAuthor: TextView = itemView.findViewById(R.id.datarecord_viewholder_author)
     }
 
-    /* Basically, inflates the ViewHolder layout and returns a ViewHolder object
+    /* Básicamente, infla el diseño de ViewHolder y devuelve un objeto ViewHolder
     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataRecordViewHolder {
         val itemView = inflater.inflate(R.layout.datarecord_viewholder, parent, false)
         return DataRecordViewHolder(itemView)
     }
 
-    /* This is where the ViewHolder gets populated with data from the Item.
-       Position inside the RecyclerView is also available.
+    /* Aquí es donde ViewHolder se llena con datos del Item.
      */
     override fun onBindViewHolder(holder: DataRecordViewHolder, position: Int) {
         val current = itemsList[position]
 
-        // Needed: will be referenced in the View.OnClickListener above
+        // Se hará referencia en el View.OnClickListener anterior
         holder.itemView.tag = current
 
         with(holder) {
-            // Set UI values
+            // Se establecen valores de IU
             itemTitle.text = current.title
             itemAuthor.text = current.author
 
-            // Set handlers
             itemView.setOnClickListener(onClickListener)
         }
     }

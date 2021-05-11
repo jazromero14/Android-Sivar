@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorSecundary">
 
-            <!--recycler view to display our data-->
+            <!--vista de reciclador para mostrar nuestros datos-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/datarecord_list"
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!--fab to add new articles-->
+    <!--botton para agregar nuevos artículos-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fltArticle"
         android:layout_width="wrap_content"

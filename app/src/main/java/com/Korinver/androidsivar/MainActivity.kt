@@ -30,29 +30,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.drawer_layout)
 
-        // Setup Recyclerview's Layout
+        // Se configura el diseño de Recyclerview
         navigation_rv.layoutManager = LinearLayoutManager(this)
         navigation_rv.setHasFixedSize(true)
 
-        // Add Item Touch Listener
+        // Se agrega el oyente táctil de cada elemento del Drawer
         navigation_rv.addOnItemTouchListener(RecyclerTouchListerner(this, object : ClickListener {
             override fun onClick(view: View, position: Int) {
                 when (position) {
                     0 -> {
-                        // # Home Fragment
+                        // # Fragmento principal = DemoFragment
                         val homeFragment = DemoFragment()
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.activity_main_content_id, homeFragment).commit()
                     }
                     1 -> {
-                        // # Music Fragment
+                        // # Fragmento donde estan los articulos personales = SecondFragment
                         val ownArticlesFragment =
                             SecondFragment()
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.activity_main_content_id, ownArticlesFragment).commit()
                     }
                 }
-                // Don't highlight the 'Profile' and 'Like us on Facebook' item row
                 if (position != 6 && position != 4) {
                     updateAdapter(position)
                 }
@@ -62,18 +61,18 @@ class MainActivity : AppCompatActivity() {
             }
         }))
 
-        // Update Adapter with item data and highlight the default menu item ('Home' Fragment)
+        //Se actualiza el adaptador con los datos del elemento
         updateAdapter(0)
 
-        // Set 'Home' as the default fragment when the app starts
+        // Establezco 'DemoFragment' como el fragmento predeterminado cuando se inicia la aplicación
         val homeFragment = DemoFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.activity_main_content_id, homeFragment).commit()
 
-        // Set Header Image
+        // Establezco imagen de encabezado
         navigation_header_img.setImageResource(R.drawable.ic_launcher_foreground)
 
-        // Set background of Drawer
+        // Establecer el color de fondo del menu
         navigation_layout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
 
     }
@@ -90,12 +89,12 @@ class MainActivity : AppCompatActivity() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            // Checking for fragment count on back stack
+            // Comprobación del recuento de fragmentos en la cola
             if (supportFragmentManager.backStackEntryCount > 0) {
-                // Go to the previous fragment
+                // Ir al fragmento anterior
                 supportFragmentManager.popBackStack()
             } else {
-                // Exit the app
+                // Salir de la app
                 super.onBackPressed()
             }
         }

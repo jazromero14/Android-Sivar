@@ -3,6 +3,8 @@ package com.Korinver.androidsivar.room
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+
+//Se establecen los  metodos que se ocuparan en el CRUD
 @Dao
 interface DataRecordDao {
 

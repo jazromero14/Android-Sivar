@@ -19,6 +19,8 @@ class NavigationRVAdapter (private var items: ArrayList<NavigationItemModel>, pr
 
     class NavigationItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    /* Básicamente, infla el diseño de ViewHolder y devuelve un objeto ViewHolder
+  */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavigationItemViewHolder {
         context = parent.context
         val navItem = LayoutInflater.from(parent.context).inflate(R.layout.row_nav_drawer, parent, false)
@@ -30,7 +32,7 @@ class NavigationRVAdapter (private var items: ArrayList<NavigationItemModel>, pr
     }
 
     override fun onBindViewHolder(holder: NavigationItemViewHolder, position: Int) {
-        // To highlight the selected item, show different background color
+        // Para resaltar el elemento seleccionado, se pondra un color de fondo diferente
         if (position == currentPos) {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
         } else {

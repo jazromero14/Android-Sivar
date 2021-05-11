@@ -18,13 +18,17 @@ import com.bumptech.glide.Glide
 class RecyclerAdapter(private val context: Context, private val mArticles: List<Articles>, private val mCardViewLayout: Int) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
-
+    /* Básicamente, infla el diseño de ViewHolder y devuelve un objeto ViewHolder
+       */
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
             .inflate(mCardViewLayout, viewGroup, false)
         return ViewHolder(v)
     }
 
+
+    /* Aquí es donde ViewHolder se llena con datos del Item.
+     */
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
 
         var imgUrl = mArticles[i].urlToImage
@@ -55,6 +59,10 @@ class RecyclerAdapter(private val context: Context, private val mArticles: List<
     override fun getItemCount(): Int {
         return mArticles.size
     }
+
+    /* Esta es una clase interna que asocia los elementos en ViewHolder
+      diseño con variables que se utilizarán dentro de OnBindViewHolder.
+  */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cardItems : CardView = itemView.findViewById(R.id.card_pertanyaan)
         var itemImg: ImageView = itemView.findViewById(R.id.imgData)

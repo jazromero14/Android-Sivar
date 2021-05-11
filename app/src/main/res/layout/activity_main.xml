@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <!-- Main Activity -->
+    <!--Inicia Main Activity -->
     <LinearLayout
         android:id="@+id/main_activity_content_id"
         android:layout_width="match_parent"
@@ -25,9 +25,9 @@
             android:clipToPadding="false" />
 
     </LinearLayout>
-    <!-- Main Activity End -->
+    <!--Finaliza Main Activity  -->
 
-    <!-- Custom Navigation Drawer Start -->
+    <!-- Inicio del cajón de navegación personalizado -->
     <LinearLayout
         android:id="@+id/navigation_layout"
         android:layout_width="@dimen/_200sdp"
@@ -71,6 +71,6 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-    <!-- Custom Navigation Drawer End -->
+    <!--FIN del cajón de navegación personalizado-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

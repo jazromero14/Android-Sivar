@@ -22,44 +22,44 @@ class DataRecordDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Load the layout from `activity_datarecord_detail.xml`
+        // Cargando  el diseño de `activity_datarecord_detail.xml`
         setContentView(R.layout.activity_data_record_detail)
         val toolbar: Toolbar = findViewById(R.id.nwToolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(View.OnClickListener {
-            //What to do on back clicked
+            //Que hacer al hacer clic en la parte posterior
             onBackPressed()
         })
 
-        /* Retrieve the ViewModel that we have defined (`DataRecordViewModel::class.java`)
-           from the ViewModelProvider service.
+        /* Recuperamos el ViewModel que hemos definido (`DataRecordViewModel :: class.java`)
+            desde el servicio ViewModelProvider.
         */
         datarecordViewModel = ViewModelProvider(this).get(DataRecordViewModel::class.java)
 
-        /* Check Intent for Extra Data, based on the predefined key (which is the same that we use
-           to insert such data. Also notice that since we expect it to be of type Long, we use
-           `getLongExtra`. There's getters for different data types.
+        /*Verificamos el intent de los datos adicionales, en función de la clave predefinida (que es la misma que usamos
+            para insertar dichos datos. También se observa como esperamos que sea de tipo Long, usamos
+            `getLongExtra`. Hay captadores para diferentes tipos de datos.
         */
         if (intent.hasExtra(Constants.DATA_RECORD_ID)) {
             recordId = intent.getLongExtra(Constants.DATA_RECORD_ID, 0L)
 
-            /*  In this case, since the DAO `get(id)` method returns a `LiveData` object,
-                we use the `observer` pattern to populate the view.
+            /* En este caso, dado que el método DAO `get (id)` devuelve un objeto `LiveData`,
+                 utilizamos el patrón `observer` para poblar la vista.
              */
             datarecordViewModel.get(recordId).observe(this, Observer {
 
-                // Ger references to the UI items in the layout
+                // HAcemos referencias a los elementos de la interfaz de usuario en el diseño
                 val viewId = findViewById<TextView>(R.id.datarecord_id)
                 val viewAuthor = findViewById<EditText>(R.id.authorNew)
                 val viewTitle = findViewById<EditText>(R.id.titleData)
                 val viewDescription = findViewById<EditText>(R.id.descriptioNew)
                 val viewContent = findViewById<EditText>(R.id.contentNew)
 
-                // Protect from null, which occurs when we delete the item
+                // Protegemos del caso cuando sea nulo, que ocurre cuando eliminamos el elemento.
                 if (it != null) {
-                    // populate with data
+                    //poblamos con datos
                     viewId.text = it.id.toString()
                     viewAuthor.setText(it.author)
                     viewTitle.setText(it.title)
@@ -70,10 +70,10 @@ class DataRecordDetail : AppCompatActivity() {
             isEdit = true
         }
 
-        /* Prepare OnClickListeners for each button:
-            Save, Update and Delete.
-           They pretty much do the same operations and checks, but use the specific
-           insert, update, delete method from the ViewModel.
+        /* Preparamos OnClickListeners para cada botón:
+             Guardar, actualizar y eliminar.
+            Realizan prácticamente las mismas operaciones y comprobaciones, pero utilizan el método específico
+            insertar, actualizar, eliminar el método de ViewModel.
          */
         val btnSave = btnSave
         btnSave.setOnClickListener { view ->
@@ -125,17 +125,16 @@ class DataRecordDetail : AppCompatActivity() {
             finish()
         }
 
-        /* Hide buttons depending on our case: this is a very simplistic UI management
-           example, and you need to correctly set the constraints on the Layout to make
-           this at least marginally pleasant. There's better ways, of course. :-)
+        /* Oculte botones según el caso: esta es una gestión de UI muy simplista
+            ejemplo
          */
         if (isEdit) {
-            /* btnSave calls the dao.save method, which actually creates a new record
-               By hiding it, we correctly allow only Update and Delete
+            /* btnSave llama al método dao.save, que en realidad crea un nuevo registro
+                Al ocultarlo, permitimos correctamente solo Actualizar y Eliminar
              */
             btnSave.visibility = View.GONE
         } else {
-            /* No reason to Update or Delete a new Record yet to be saved */
+            /*No hay motivo para actualizar o eliminar un nuevo registro que aún no se haya guardado*/
             btnUpdate.visibility = View.GONE
             btnDelete.visibility = View.GONE
         }

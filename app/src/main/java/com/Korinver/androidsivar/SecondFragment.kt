@@ -32,11 +32,13 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated( itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        //Se establece la toolbar personalizada
         val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.secondToolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
         toolbar.title = "Android Sivar"
         toolbar.setNavigationIcon(R.drawable.ic_headline);
 
+        //boton flotante para nuevo registro del crud
         val fab: View = view!!.rootView.findViewById(R.id.fltArticle)
         fab.setOnClickListener { view ->
             val intent = Intent(context, DataRecordDetail::class.java)
@@ -49,18 +51,16 @@ class SecondFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        /* We need the data to populate the list with. For this we will retrieve the ViewModel
-           that we have defined, which in our case is a `DataRecordViewModel::class.java`, from
-           the ViewModelProvider service.
+        /*Se recupera el ViewModel que hemos definido, que en nuestro caso es un `DataRecordViewModel :: class.java`, de
+            el servicio ViewModelProvider. ahi tendremos nuestros datos
         */
         datarecordViewModel = ViewModelProvider(this).get(DataRecordViewModel::class.java)
 
-        /* Simply associate an observer with each of the items contained in the viewmodel.
-           Notice that this can be done because `allItems` in the `DataRecordViewModel` is a `LiveData`
-           object.
-           The method `setItems` of the `DataRecordAdapter` class, takes care of populating each
-           line of the RecyclerView, according to the layout specified in `datarecord_viewholder`.
-           This is also where we set any actions (click, longclick...) per item in the list.
+        /* Simplemente asocio un observador con cada uno de los elementos contenidos en el modelo de vista.
+            Tenga en cuenta que esto se puede hacer porque `allItems` en el` DataRecordViewModel` es un `LiveData`
+            objeto.
+            El método `setItems` de la clase` DataRecordAdapter`, se encarga de poblar cada
+            línea de RecyclerView, de acuerdo con el diseño especificado en `datarecord_viewholder`.
         */
         datarecordViewModel.allItems.observe(viewLifecycleOwner, Observer { items ->
             items?.let { adapter.setItems(it) }
