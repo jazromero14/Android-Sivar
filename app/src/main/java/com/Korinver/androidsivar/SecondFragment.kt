@@ -35,7 +35,7 @@ class SecondFragment : Fragment() {
         val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.secondToolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
         toolbar.title = "Android Sivar"
-       // titleSecond.text = "Android Sivar"
+        toolbar.setNavigationIcon(R.drawable.ic_headline);
 
         val fab: View = view!!.rootView.findViewById(R.id.fltArticle)
         fab.setOnClickListener { view ->

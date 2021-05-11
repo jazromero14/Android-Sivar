@@ -17,4 +17,6 @@
     <string name="en">EN</string>
     <string name="idioma">Idioma:</string>
     <string name="developed_by_jazm_n_romero">Developed by Jazmín Romero</string>
+    <string name="anterior">Anterior</string>
+    <string name="next">siguiente</string>
 </resources>

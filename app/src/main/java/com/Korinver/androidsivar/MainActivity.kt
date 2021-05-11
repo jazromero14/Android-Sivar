@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private var items = arrayListOf(
         NavigationItemModel(R.drawable.ic_home, "Inicio"),
-        NavigationItemModel(R.drawable.ic_list, "Mis Publicaciones"),
-        NavigationItemModel(R.drawable.ic_people, "Nosotros")
+        NavigationItemModel(R.drawable.ic_list, "Mis Publicaciones")
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,40 +46,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     1 -> {
                         // # Music Fragment
-                        val musicFragment =
+                        val ownArticlesFragment =
                             SecondFragment()
                         supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_content_id, musicFragment).commit()
+                            .replace(R.id.activity_main_content_id, ownArticlesFragment).commit()
                     }
-                    2 -> {
-                        // # Movies Fragment
-                        val moviesFragment = DemoFragment()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_content_id, moviesFragment).commit()
-                    }
-                    3 -> {
-                        // # Books Fragment
-                        val booksFragment = DemoFragment()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_content_id, booksFragment).commit()
-                    }
-                    4 -> {
-                        // # Profile Activity
-                        val intent = Intent(this@MainActivity, DemoActivity::class.java)
-                        startActivity(intent)
-                    }
-                    5 -> {
-                        // # Settings Fragment
-                        val settingsFragment = DemoFragment()
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_content_id, settingsFragment).commit()
-                    }
-//                    6 -> {
-//                        // # Open URL in browser
-//                        val uri: Uri = Uri.parse("https://johnc.co/fb")
-//                        val intent = Intent(Intent.ACTION_VIEW, uri)
-//                        startActivity(intent)
-//                    }
                 }
                 // Don't highlight the 'Profile' and 'Like us on Facebook' item row
                 if (position != 6 && position != 4) {

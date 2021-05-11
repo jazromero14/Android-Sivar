@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 class RecyclerAdapter(private val context: Context, private val mArticles: List<Articles>, private val mCardViewLayout: Int) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
             .inflate(mCardViewLayout, viewGroup, false)

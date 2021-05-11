@@ -1,12 +1,14 @@
 package com.Korinver.androidsivar
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,18 +16,27 @@ import com.Korinver.androidsivar.adapters.RecyclerAdapter
 import com.Korinver.androidsivar.models.Articles
 import com.Korinver.androidsivar.models.Results
 import com.Korinver.androidsivar.retrofit.ApiInterface
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.datarecord_viewholder.view.*
 import kotlinx.android.synthetic.main.fragment_demo.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.isInitialized as isInitialized1
 
 
 class DemoFragment : Fragment() {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+   private var linearLayoutManager = LinearLayoutManager(context)
+  private lateinit var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
    private  var mArticles : MutableList<Articles> = ArrayList()
     private lateinit var apiInterface: Call<Results>
+    private lateinit var nestedScroll: NestedScrollView
+    private var isLoading: Boolean = false
+    private var page: Int = 1
+
+    val limit = 10
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,52 +54,118 @@ class DemoFragment : Fragment() {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.mainToolbarAct)
-
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
         titlemain.text = "Android Sivar"
+        toolbar.setNavigationIcon(R.drawable.ic_headline);
         //recycler
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view)
+        nestedScroll = view!!.findViewById(R.id.nestedScroll)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
 
-
+        upButtom(1)
         // define an adapter
         adapter = RecyclerAdapter(requireContext(), mArticles, R.layout.cardview)
         recyclerView.adapter = adapter
-        getData("es")
-        
+        getData("es", 1)
+
+
         languageSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
 
             if (isChecked){
                 mArticles.clear()
-                getData("es")
+                getData("es", page)
+                upButtom(page)
             }else{
                 mArticles.clear()
-                getData("en")
+                getData("en",page)
+                upButtom(page)
+            }
+        }
+
+        btnSiguiente.setOnClickListener {
+            if (languageSwitch.isChecked){
+                page += 1
+                mArticles.clear()
+                getData("es", page)
+                upButtom(page)
+            }else{
+                page +=1
+                mArticles.clear()
+                getData("en", page)
+                upButtom(page)
+            }
+        }
+        btnAnterior.setOnClickListener {
+            if (languageSwitch.isChecked){
+                page -= 1
+                mArticles.clear()
+                getData("es", page)
+                upButtom(page)
+            }else{
+                page -=1
+                mArticles.clear()
+                getData("en", page)
+                upButtom(page)
             }
         }
 
     }
+    private fun upButtom(page: Int){
+        if( page<=1 ){
+            btnAnterior.isFocusable = false
+            btnAnterior.isClickable = false
+            btnAnterior.isEnabled = false
+        }else{
+            btnAnterior.isFocusable = true
+            btnAnterior.isClickable = true
+            btnAnterior.isEnabled = true
+            btnAnterior.visibility = View.VISIBLE
+        }
+        if (page >= 5 ){
 
-    private fun getData(language: String) {
+                btnSiguiente.isFocusable = false
+                btnSiguiente.isClickable = false
+                btnSiguiente.isEnabled = false
+        }else{
+            btnSiguiente.isFocusable = true
+            btnSiguiente.isClickable = true
+            btnSiguiente.isEnabled = true
 
-        val API_KEY = "03715fe40d8a47cdb59a8860330e57e5"
-        apiInterface = ApiInterface.create().getResults("android","popularity", language,API_KEY)
+        }
+    }
+    private fun getData(language: String, page : Int) {
+
+        val API_KEY = "4f6ad0c7ee86446f8857e1edc6c479fc"
+        apiInterface = ApiInterface.create().getResults("android","popularity", language, page,API_KEY)
         apiInterface.enqueue(object : Callback<Results> {
             override fun onFailure(call: Call<Results>, t: Throwable) {
                 Log.e("results", t.toString())
+                Snackbar.make(view!!, "ha ocurrido un error, intentalo de nuevo", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
             }
 
             override fun onResponse(call: Call<Results>, response: Response<Results>) {
                 if (response.body() != null){
-                    val results = response.body().toString()
-                    val articles = response.body()!!.articles
-                    mArticles.addAll(articles)
-                    adapter!!.notifyDataSetChanged()
-                    Log.e("results", articles.toString())
+                    if(response.body()!!.status == "error"){
 
+                        Snackbar.make(view!!, "ha ocurrido un error, intentalo de nuevo", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    }else{
+                        val results = response.body().toString()
+                        val articles = response.body()!!.articles
+                        mArticles.addAll(articles)
+                        adapter!!.notifyDataSetChanged()
+                        Log.e("results", articles.toString())
+                    }
+
+                }else{
+                    Log.e("results", "sin respuesta")
+                    Snackbar.make(view!!, "ha ocurrido un error, intentalo de nuevo", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
                 }
             }
         })
     }
 }
+
