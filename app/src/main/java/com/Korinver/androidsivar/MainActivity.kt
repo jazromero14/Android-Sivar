@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         NavigationItemModel(R.drawable.ic_list, "Mis Publicaciones")
     )
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.splashTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawerLayout = findViewById(R.id.drawer_layout)
