@@ -1,4 +1,4 @@
-package com.Korinver.androidsivar
+package com.korinver.androidsivar
 
 import android.content.Context
 import android.content.Intent
@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.Korinver.androidsivar.adapters.DataRecordAdapter
-import com.Korinver.androidsivar.viewmodels.DataRecordViewModel
+import com.korinver.androidsivar.adapters.DataRecordAdapter
+import com.korinver.androidsivar.viewmodels.DataRecordViewModel
 import kotlinx.android.synthetic.main.fragment_demo.*
 import kotlinx.android.synthetic.main.fragment_second.*
 
@@ -30,19 +30,19 @@ class SecondFragment : Fragment() {
         return rootView
     }
 
-    override fun onViewCreated( itemView: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         //Se establece la toolbar personalizada
-        val toolbar: Toolbar = view!!.findViewById<Toolbar>(R.id.secondToolbar)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
-        toolbar.title = "Android Sivar"
-        toolbar.setNavigationIcon(R.drawable.ic_headline);
+        //      val toolbar: Toolbar = requireView().findViewById<Toolbar>(R.id.secondToolbar)
+//        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+        //      toolbar.title = "Android Sivar"
+        //    toolbar.setNavigationIcon(R.drawable.ic_headline);
 
         //boton flotante para nuevo registro del crud
-        val fab: View = view!!.rootView.findViewById(R.id.fltArticle)
+        val fab: View = requireView().rootView.findViewById(R.id.fltArticle)
         fab.setOnClickListener { view ->
             val intent = Intent(context, DataRecordDetail::class.java)
-            context!!.startActivity(intent)
+            requireContext().startActivity(intent)
 
         }
 
@@ -67,8 +67,6 @@ class SecondFragment : Fragment() {
         })
 
     }
-
-
 
 
 }

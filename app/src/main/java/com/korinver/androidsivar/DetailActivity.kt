@@ -1,4 +1,4 @@
-package com.Korinver.androidsivar
+package com.korinver.androidsivar
 
 import android.content.Intent
 import android.net.Uri

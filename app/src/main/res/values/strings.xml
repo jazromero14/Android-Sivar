@@ -19,4 +19,7 @@
     <string name="developed_by_jazm_n_romero">Developed by Jazmín Romero</string>
     <string name="anterior">Anterior</string>
     <string name="next">siguiente</string>
+    <string name="tasks_header_image_content_description">Task header image</string>
+    <string name="Principal">Principal</string>
+    <string name="publicaciones">Mis publicaciones</string>
 </resources>

@@ -1,13 +1,13 @@
-package com.Korinver.androidsivar.viewmodels
+package com.korinver.androidsivar.viewmodels
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.Korinver.androidsivar.room.AppRoomDatabase
-import com.Korinver.androidsivar.room.DataRecord
-import com.Korinver.androidsivar.room.DataRecordRepository
+import com.korinver.androidsivar.room.AppRoomDatabase
+import com.korinver.androidsivar.room.DataRecord
+import com.korinver.androidsivar.room.DataRecordRepository
 import kotlinx.coroutines.launch
 
 private const val TAG = "DataRecordViewModel "

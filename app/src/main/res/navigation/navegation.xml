@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navegation"
+    app:startDestination="@id/demoFragment">
+
+    <fragment
+        android:id="@+id/demoFragment"
+        android:name="com.korinver.androidsivar.DemoFragment"
+        android:label="DemoFragment" />
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.korinver.androidsivar.SecondFragment"
+        android:label="SecondFragment" />
+</navigation>

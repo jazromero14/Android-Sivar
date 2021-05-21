@@ -1,4 +1,4 @@
-package com.Korinver.androidsivar
+package com.korinver.androidsivar
 
 
 //variable para el Intent con datos adicionales personalizados.

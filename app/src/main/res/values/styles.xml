@@ -22,8 +22,11 @@
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
-    
+
     <style name="splashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
+
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

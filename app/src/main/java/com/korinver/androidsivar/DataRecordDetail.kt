@@ -1,4 +1,4 @@
-package com.Korinver.androidsivar
+package com.korinver.androidsivar
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.Korinver.androidsivar.room.DataRecord
-import com.Korinver.androidsivar.viewmodels.DataRecordViewModel
+import com.korinver.androidsivar.room.DataRecord
+import com.korinver.androidsivar.viewmodels.DataRecordViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_data_record_detail.*
 

@@ -1,4 +1,4 @@
-package com.Korinver.androidsivar
+package com.korinver.androidsivar
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Korinver.androidsivar">
+    package="com.korinver.androidsivar">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/android_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DataRecordDetail"></activity>
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".MainActivity"
-            android:theme="@style/splashTheme">
+        <activity android:name="com.korinver.androidsivar.DataRecordDetail"></activity>
+        <activity android:name="com.korinver.androidsivar.DetailActivity" />
+        <activity android:name="com.korinver.androidsivar.MainActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
